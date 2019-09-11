@@ -100,6 +100,14 @@ public class PayStationImplTest {
         receipt = ps.buy();
         assertEquals(40, receipt.value());
     }
+    
+    @Test
+    public void shouldDisplayMoneyAndEmpty() throws IllegalCoinException {
+        ps.addPayment(25);
+        int time = ps.empty();
+        assertEquals("Should display the time equivalent to 25 cents",10, time);
+        assertEquals("Should display 0 now since it is empty", 15, ps.readDisplay());
+    }
 
     /**
      * Verify that the pay station is cleared after a buy scenario
