@@ -106,7 +106,7 @@ public class PayStationImplTest {
         ps.addPayment(25);
         int time = ps.empty();
         assertEquals("Should display the time equivalent to 25 cents",10, time);
-        assertEquals("Should display 0 now since it is empty", 15, ps.readDisplay());
+        assertEquals("Should display 0 now since it is empty", 0, ps.readDisplay());
     }
 
     /**
