@@ -55,7 +55,7 @@ public class PayStationImpl implements PayStation {
     public Receipt buy() {
         // reset transaction and return reciept object
         Receipt r = new ReceiptImpl(timeBought);
-        totalCollected+=insertedSoFar;
+        totalEarnings+=insertedSoFar;
         reset();
         return r;
     }
