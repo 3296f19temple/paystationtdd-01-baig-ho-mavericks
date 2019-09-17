@@ -9,16 +9,7 @@
  * implied. You may study, use, modify, and distribute it for non-commercial
  * purposes. For any commercial use, see http://www.baerbak.com/
  
- TODO Tests
-	1-Call to empty returns the total amount entered. 
-	2-Canceled entry does not add to the amount returned by empty. 
-	3-Call to empty resets the total to zero. 
-	4-Call to cancel returns a map containing one coin entered. 
-	5-Call to cancel returns a map containing a mixture of coins entered.
-        6-CoinMap never null
-	7-Call to cancel returns a map that does not contain a key for a coin not entered. 
-	8-Call to cancel clears the map. 
-	9-Call to buy clears the map.  
+ 
  */
 package paystation.domain;
 
@@ -112,14 +103,6 @@ public class PayStationImplTest {
         receipt = ps.buy();
         assertEquals(40, receipt.value());
     }
-    
-    @Test
-    public void shouldDisplayMoneyAndEmpty() throws IllegalCoinException {
-        ps.addPayment(25);
-        int time = ps.empty();
-        assertEquals("Should display the time equivalent to 25 cents",10, time);
-        assertEquals("Should display 0 now since it is empty", 0, ps.readDisplay());
-    }
 
     /**
      * Verify that the pay station is cleared after a buy scenario
@@ -158,6 +141,19 @@ public class PayStationImplTest {
         assertEquals("Insert after cancel should work",
                 10, ps.readDisplay());
     }
+    
+    
+    
+    /* TODO Tests
+	1-Call to empty returns the total amount entered. 
+	2-Canceled entry does not add to the amount returned by empty. 
+	3-Call to empty resets the total to zero. 
+	4-Call to cancel returns a map containing one coin entered. 
+	5-Call to cancel returns a map containing a mixture of coins entered.
+        6-CoinMap never null
+	7-Call to cancel returns a map that does not contain a key for a coin not entered. 
+	8-Call to cancel clears the map. 
+	9-Call to buy clears the map.  */
     
     ///////////////////// NEWLY ADDED TEST CASES /////////////////
     
@@ -198,17 +194,15 @@ public class PayStationImplTest {
 	ps.addPayment(25);
 	ps.addPayment(10);
 	ps.buy();
-	int total = ps.empty();
+	ps.empty();
 	assertEquals(0,ps.empty());
     }  
      //Call to cancel returns a map containing one coin entered. 
     @Test
     public void cancelMapReturnsOneCoin() throws IllegalCoinException{
         ps.addPayment(5);
-        ps.addPayment(10);
         Map<Integer,Integer> coins = ps.cancel();
         assertEquals(Integer.valueOf(1), coins.get(5));
-    
     }
 
 
