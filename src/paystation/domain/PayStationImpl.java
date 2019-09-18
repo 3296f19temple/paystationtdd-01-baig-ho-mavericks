@@ -33,8 +33,9 @@ public class PayStationImpl implements PayStation {
     
     
     
-    private HashMap<Integer,Integer> coinMap = new HashMap<Integer,Integer>();
-
+    protected HashMap<Integer,Integer> coinMap = new HashMap<Integer,Integer>();
+    
+    
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
@@ -75,6 +76,15 @@ public class PayStationImpl implements PayStation {
     @Override
     public HashMap<Integer,Integer> cancel() {
         //Reset transaction counts and return the coins in play
+        if (coinMap.get(5)== null ) {
+            coinMap.put(5, 0);
+            };
+        if (coinMap.get(10)== null ) {
+            coinMap.put(10, 0);
+            };
+        if (coinMap.get(25)== null ) {
+            coinMap.put(25, 0);
+            };
         HashMap<Integer,Integer> tempMap = (HashMap)coinMap;
         reset();
         return tempMap;
