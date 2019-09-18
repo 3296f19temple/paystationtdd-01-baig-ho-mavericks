@@ -229,7 +229,7 @@ public class PayStationImplTest {
     
     //7-Call to cancel clears the map
     @Test
-    public void cancelMapClear() throws IllegalCoinException{
+    public void cancelClearMap() throws IllegalCoinException{
         ps.addPayment(25);
         coins = ps.cancel();
         assertEquals(Integer.valueOf(1), coins.get(25));
@@ -237,6 +237,17 @@ public class PayStationImplTest {
         assertEquals(Integer.valueOf(0), coins.get(25));
     }
 
-
+    //8-Call to buy clears the map
+    @Test
+    public void buyClearMap() throws IllegalCoinException{
+        ps.addPayment(25);
+        ps.addPayment(10);
+        ps.buy();
+        ps.addPayment(5);
+        coins = ps.cancel();
+        assertEquals(Integer.valueOf(1), coins.get(5));
+        assertEquals(Integer.valueOf(1), coins.get(25));
+        assertEquals(Integer.valueOf(1), coins.get(10));
+    }
 
 }
