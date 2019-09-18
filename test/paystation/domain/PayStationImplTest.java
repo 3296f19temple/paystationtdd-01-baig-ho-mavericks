@@ -218,6 +218,15 @@ public class PayStationImplTest {
         assertEquals(Integer.valueOf(1), coins.get(5));
         assertEquals(Integer.valueOf(2), coins.get(10));
     }
+    
+    //Call to cancel returns a map containing no coin that is not entered
+    @Test
+    public void cancelMapReturnsNone() throws IllegalCoinException{
+        ps.addPayment(25);
+        coins = ps.cancel();
+        assertEquals(Integer.valueOf(1), coins.get(5));
+        assertEquals(Integer.valueOf(2), coins.get(10));
+    }
 
 
 
