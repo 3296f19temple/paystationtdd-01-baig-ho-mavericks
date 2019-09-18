@@ -76,22 +76,29 @@ public class PayStationImpl implements PayStation {
     @Override
     public HashMap<Integer,Integer> cancel() {
         //Reset transaction counts and return the coins in play
-        if (coinMap.get(5)== null ) {
+        if (coinMap.get(5) == null) {
             coinMap.put(5, 0);
-            };
-        if (coinMap.get(10)== null ) {
+        };
+        if (coinMap.get(10) == null) {
             coinMap.put(10, 0);
-            };
-        if (coinMap.get(25)== null ) {
+        };
+        if (coinMap.get(25) == null) {
             coinMap.put(25, 0);
-            };
-        HashMap<Integer,Integer> tempMap = (HashMap)coinMap;
+        };
+        
+        HashMap<Integer,Integer> tempMap = new HashMap<Integer,Integer>();
+        tempMap.put(5,coinMap.get(5));
+        tempMap.put(10,coinMap.get(10));
+        tempMap.put(25,coinMap.get(25));
         reset();
         return tempMap;
     }
     
     
     private void reset() {
+        coinMap.put(5, 0);
+        coinMap.put(10, 0);
+        coinMap.put(25, 0);
         timeBought = insertedSoFar = 0;
         count5 = 0; count10 = 0; count25 = 0;
     
