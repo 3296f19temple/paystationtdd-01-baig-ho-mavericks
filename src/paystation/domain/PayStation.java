@@ -19,6 +19,7 @@
  */
 package paystation.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public interface PayStation {
@@ -51,7 +52,7 @@ public interface PayStation {
     /**
      * Cancel the present transaction. Resets the machine for a new transaction.
      */
-    public Map<Integer,Integer> cancel();
+    public HashMap<Integer,Integer> cancel();
    
     /**
      * Remove all money earned by pay station. Earned count to zero after being 
