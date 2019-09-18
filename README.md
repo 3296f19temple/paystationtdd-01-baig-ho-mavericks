@@ -1,5 +1,5 @@
 # paystationtdd-01-baig-ho-mavericks
-paystationtdd-01-baig-ho-mavericks created by Cole and Dawud\n
+paystationtdd-01-baig-ho-mavericks created by Cole and Dawud
 
 ## PAYSTATION PROJECT - DESCRIPTION AND FEATURES
 
