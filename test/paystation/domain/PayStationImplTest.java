@@ -152,15 +152,14 @@ public class PayStationImplTest {
 	3-Call to empty resets the total to zero. 
 	4-Call to cancel returns a map containing one coin entered. 
 	5-Call to cancel returns a map containing a mixture of coins entered.
-        6-CoinMap never null
-	7-Call to cancel returns a map that does not contain a key for a coin not entered. 
-	8-Call to cancel clears the map. 
-	9-Call to buy clears the map.  */
+	6-Call to cancel returns a map that does not contain a key for a coin not entered. 
+	7-Call to cancel clears the map. 
+	8-Call to buy clears the map.  */
     
     ///////////////////// NEWLY ADDED TEST CASES /////////////////
     
     
-    //Call to empty will return the total amount which is entered
+    //1-Call to empty will return the total amount which is entered
     @Test
     public void emptyReturnsMulti() throws IllegalCoinException{
         ps.addPayment(5);
@@ -177,7 +176,7 @@ public class PayStationImplTest {
         assertEquals(5,ps.empty());
     }
     
-    //Canceled entry does not add to the amount returned by empty
+    //2-Canceled entry does not add to the amount returned by empty
     @Test
     public void CanceledOrdersDontCount() throws IllegalCoinException{
 	ps.addPayment(5);
@@ -189,7 +188,7 @@ public class PayStationImplTest {
 	assertEquals(40,ps.empty());
     }    
 
-    //Call to empty resets the total to zero. 
+    //3-Call to empty resets the total to zero. 
     @Test
     public void emptyResetsTotalToZero() throws IllegalCoinException{
 	ps.addPayment(5);
@@ -200,7 +199,7 @@ public class PayStationImplTest {
 	assertEquals(0,ps.empty());
     }  
     
-     //Call to cancel returns a map containing one coin entered. 
+     //4-Call to cancel returns a map containing one coin entered. 
     @Test
     public void cancelMapReturnsOneCoin() throws IllegalCoinException{
         ps.addPayment(5);
@@ -208,7 +207,7 @@ public class PayStationImplTest {
         assertEquals(Integer.valueOf(1), coins.get(5));
     }
     
-     //Call to cancel returns a map containing a mixture of coins 
+     //5-Call to cancel returns a map containing a mixture of coins 
     @Test
     public void cancelMapReturnsMix() throws IllegalCoinException{
         ps.addPayment(5);
@@ -219,13 +218,23 @@ public class PayStationImplTest {
         assertEquals(Integer.valueOf(2), coins.get(10));
     }
     
-    //Call to cancel returns a map containing no coin that is not entered
+    //6-Call to cancel returns a map containing no coin that is not entered
     @Test
     public void cancelMapReturnsNone() throws IllegalCoinException{
         ps.addPayment(25);
         coins = ps.cancel();
         assertEquals(Integer.valueOf(0), coins.get(5));
         assertEquals(Integer.valueOf(0), coins.get(10));
+    }
+    
+    //7-Call to cancel clears the map
+    @Test
+    public void cancelMapClear() throws IllegalCoinException{
+        ps.addPayment(25);
+        coins = ps.cancel();
+        assertEquals(Integer.valueOf(1), coins.get(25));
+        coins = ps.cancel();
+        assertEquals(Integer.valueOf(1), coins.get(25));
     }
 
 
