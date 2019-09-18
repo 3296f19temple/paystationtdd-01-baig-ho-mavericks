@@ -27,18 +27,30 @@ public class PayStationImpl implements PayStation {
     private int insertedSoFar;
     private int timeBought;
     private int totalEarnings=0;
+    private int count5= 0 ;
+    private int count10 = 0;
+    private int count25 = 0;
     
     
-    //Will fix the comment soon ( Dawud Baig)
-    private Map<Integer,Integer> coinMap = new HashMap<Integer,Integer>();
+    
+    private HashMap<Integer,Integer> coinMap = new HashMap<Integer,Integer>();
 
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
         switch (coinValue) {
-            case 5: break;
-            case 10: break;
-            case 25: break;
+            case 5: 
+                count5++;
+                coinMap.put(5, count5);
+                break;
+            case 10: 
+                count10++;
+                coinMap.put(10, count10);
+                break;
+            case 25: 
+                count25++;
+                coinMap.put(25, count25);
+                break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
@@ -61,25 +73,27 @@ public class PayStationImpl implements PayStation {
     }
 
     @Override
-    public Map<Integer,Integer> cancel() {
+    public HashMap<Integer,Integer> cancel() {
         //Reset transaction counts and return the coins in play
-        Map<Integer,Integer> tempMap = coinMap;
+        HashMap<Integer,Integer> tempMap = (HashMap)coinMap;
         reset();
         return tempMap;
     }
     
+    
     private void reset() {
         timeBought = insertedSoFar = 0;
-        coinMap=new HashMap<Integer, Integer>();
+        count5 = 0; count10 = 0; count25 = 0;
     
     }
     
     @Override
     public int empty() {
         //returns the total value of coins entered since last empty()
-        int totalEarnings = insertedSoFar;
+        int total = totalEarnings;
+        totalEarnings = 0;
         reset();
-        return totalEarnings;
+        return total;
     
     
     }
