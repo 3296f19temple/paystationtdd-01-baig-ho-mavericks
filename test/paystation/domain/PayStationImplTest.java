@@ -199,12 +199,24 @@ public class PayStationImplTest {
 	ps.empty();
 	assertEquals(0,ps.empty());
     }  
+    
      //Call to cancel returns a map containing one coin entered. 
     @Test
     public void cancelMapReturnsOneCoin() throws IllegalCoinException{
         ps.addPayment(5);
         coins = ps.cancel();
         assertEquals(Integer.valueOf(1), coins.get(5));
+    }
+    
+     //Call to cancel returns a map containing a mixture of coins 
+    @Test
+    public void cancelMapReturnsMix() throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(10);
+        ps.addPayment(10);
+        coins = ps.cancel();
+        assertEquals(Integer.valueOf(1), coins.get(5));
+        assertEquals(Integer.valueOf(1), coins.get(10));
     }
 
 
