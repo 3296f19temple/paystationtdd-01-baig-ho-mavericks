@@ -246,8 +246,8 @@ public class PayStationImplTest {
         ps.addPayment(5);
         coins = ps.cancel();
         assertEquals(Integer.valueOf(1), coins.get(5));
-        assertEquals(Integer.valueOf(1), coins.get(25));
-        assertEquals(Integer.valueOf(1), coins.get(10));
+        assertEquals(Integer.valueOf(0), coins.get(25));
+        assertEquals(Integer.valueOf(0), coins.get(10));
     }
 
 }
